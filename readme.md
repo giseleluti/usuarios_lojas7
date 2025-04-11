@@ -8,6 +8,15 @@ Esta API RESTful foi desenvolvida para gerenciar o cadastro e autenticação de 
 
 A API foi construída usando Flask (Python) e utiliza SQLite para persistência de dados. A documentação da API está disponível no Swagger UI, acessível em `http://127.0.0.1:5002/swagger` após a execução da aplicação.
 
+### Rotas
+
+* **`POST /usuarios`**:
+    * **Descrição:** Cadastra um novo usuário.
+* **`GET /usuarios/<documento>`**:
+    * **Descrição:** Busca um usuário específico pelo seu documento.
+* **`PUT /usuarios/<documento>`**:
+    * **Descrição:** Atualiza os dados de um usuário existente identificado pelo seu documento.
+
 ## Requisitos
 
 * Python 3.9 ou superior
