@@ -1,0 +1,190 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Usuários Loja7",
+    "version": "1.0.0",
+    "description": "API para cadastro, autenticação e gerenciamento de usuários."
+  },
+  "paths": {
+    "/usuarios": {
+      "post": {
+        "summary": "Cadastra um novo usuário.",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do usuário a serem cadastrados.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Gisele"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "132454"
+                },
+                "documento": {
+                  "type": "string",
+                  "example": "61840250151"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "gisele@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário cadastrado com sucesso!"
+          },
+          "400": {
+            "description": "Erro!"
+          }
+        }
+      }
+    },
+    "/usuarios/{documento}": {
+      "get": {
+        "summary": "Busca um usuário pelo documento.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documento",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string"
+                },
+                "documento": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado!"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza os dados de um usuário.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documento",
+            "required": true,
+            "type": "string"
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Dados do usuário a serem atualizados.",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "senha": {
+                "type": "string",
+                "example": "123456"
+              },
+              "email": {
+                "type": "string",
+                "example": "gisele.oliveira@gmail.com"
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Usuário atualizado com sucesso!"
+        },
+        "400": {
+          "description": "erro ao atualizar"
+        }
+      }
+    },
+    "delete": {
+      "summary": "Deleta um usuário pelo documento.",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "documento",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Usuário deletado com sucesso!"
+        },
+        "404": {
+          "description": "Usuário não encontrado!"
+        },
+        "500": {
+          "description": "Erro ao deletar usuário!"
+        }
+      }
+    }
+  },
+    "/login": {
+      "post": {
+        "summary": "Autentica um usuário.",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Credenciais do usuário.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "documento": {
+                  "type": "string",
+                  "example": "61840250151"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "123456"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso!"
+          },
+          "401": {
+            "description": "Credenciais inválidas!"
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    }
+  }
+}
